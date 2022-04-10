@@ -1,12 +1,36 @@
+import { Route, Routes } from 'react-router-dom';
 import './App.css';
+import About from './components/About/About';
 import Header from './components/Header/Header';
-import Shop from './components/Header/Shop/Shop';
+import Inventory from './components/Inventory/Inventory';
+import Login from './components/Login/Login';
+import Order from './components/Order/Order';
+import RequireAuth from './components/RequirAuth/RequirAuth';
+import Shipment from './components/Shipment/Shipment';
+import Shop from './components/Shop/Shop';
+import SignUp from './components/SignUp/SignUp';
 
 function App() {
   return (
     <div >
       <Header></Header>
-      <Shop></Shop>
+      <Routes>
+        <Route path='/' element={<Shop></Shop>}></Route>
+        <Route path='/Shop' element={<Shop></Shop>}></Route>
+        <Route path='/Order' element={<Order></Order>}></Route>
+        <Route path='/Inventory' element={
+          <RequireAuth>
+            <Inventory></Inventory>
+          </RequireAuth>
+        }></Route>
+        <Route path='/shipment' element={
+          <RequireAuth>
+            <Shipment />
+          </RequireAuth>}></Route>
+        <Route path='/About' element={<About></About>}></Route>
+        <Route path='/login' element={<Login />}></Route>
+        <Route path='/signup' element={<SignUp />}></Route>
+      </Routes>
     </div>
   );
 }
